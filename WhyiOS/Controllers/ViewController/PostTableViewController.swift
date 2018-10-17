@@ -9,82 +9,86 @@
 import UIKit
 
 class PostTableViewController: UITableViewController {
-
+    
+    var fetchedPosts: [Post] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
-
+    
+    func refresh() {
+        PostController.getPosts { (posts) in
+            guard let posts = posts else { return }
+            self.fetchedPosts = posts
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        refresh()
+    }
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        presentReasonAlert()
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return fetchedPosts.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
+        let post = fetchedPosts[indexPath.row]
+        cell.textLabel?.text = "\(post.name) - \(post.cohort)"
+        cell.detailTextLabel?.text = post.reason
         return cell
     }
-    */
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+// MARK: - Alerts
+extension PostTableViewController {
+    func presentReasonAlert() {
+        var nameTextFieldForReason: UITextField?
+        var reasonTextFieldForReason: UITextField?
+        var cohortTextFieldForReason: UITextField?
+        
+        let reasonAlert = UIAlertController(title: "Why did you choose iOS?", message: "Enter your reason below", preferredStyle: .alert)
+        
+        reasonAlert.addTextField { (nameTextField) in
+            nameTextField.placeholder = "Enter your name"
+            nameTextFieldForReason = nameTextField
+        }
+        reasonAlert.addTextField { (cohortTextField) in
+            cohortTextField.placeholder = "Enter your cohort"
+            cohortTextFieldForReason = cohortTextField
+        }
+        reasonAlert.addTextField { (reasonTextField) in
+            reasonTextField.placeholder = "Enter your reason"
+            reasonTextFieldForReason = reasonTextField
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let addReasonAction = UIAlertAction(title: "Post", style: .default) { (_) in
+            guard let name = nameTextFieldForReason?.text,
+                let reason = reasonTextFieldForReason?.text,
+                let cohort = cohortTextFieldForReason?.text
+                else { return }
+            PostController.postReason(name: name, cohort: cohort, reason: reason, completion: { (post) in
+                if post != nil {
+                    DispatchQueue.main.async {
+                        self.refresh()
+                    }
+                } else {
+                    print("Error posting reason.")
+                }
+            })
+        }
+        reasonAlert.addAction(cancelAction)
+        reasonAlert.addAction(addReasonAction)
+        present(reasonAlert, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

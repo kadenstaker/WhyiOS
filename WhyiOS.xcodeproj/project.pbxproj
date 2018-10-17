@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		FAF3DB932177C79800ED629E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3DB922177C79800ED629E /* AppDelegate.swift */; };
-		FAF3DB952177C79800ED629E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3DB942177C79800ED629E /* ViewController.swift */; };
 		FAF3DB982177C79800ED629E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF3DB962177C79800ED629E /* Main.storyboard */; };
 		FAF3DB9A2177C79800ED629E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF3DB992177C79800ED629E /* Assets.xcassets */; };
 		FAF3DB9D2177C79800ED629E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF3DB9B2177C79800ED629E /* LaunchScreen.storyboard */; };
+		FAF3DBAA2177C8DC00ED629E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3DBA92177C8DC00ED629E /* Post.swift */; };
+		FAF3DBAC2177C92B00ED629E /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3DBAB2177C92B00ED629E /* PostController.swift */; };
+		FAF3DBAE2177D2F700ED629E /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3DBAD2177D2F700ED629E /* PostTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FAF3DB8F2177C79800ED629E /* WhyiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3DB922177C79800ED629E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAF3DB942177C79800ED629E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAF3DB972177C79800ED629E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAF3DB992177C79800ED629E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAF3DB9C2177C79800ED629E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAF3DB9E2177C79800ED629E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAF3DBA92177C8DC00ED629E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FAF3DBAB2177C92B00ED629E /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		FAF3DBAD2177D2F700ED629E /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		FAF3DB912177C79800ED629E /* WhyiOS */ = {
 			isa = PBXGroup;
 			children = (
-				FAF3DB922177C79800ED629E /* AppDelegate.swift */,
-				FAF3DB942177C79800ED629E /* ViewController.swift */,
-				FAF3DB962177C79800ED629E /* Main.storyboard */,
-				FAF3DB992177C79800ED629E /* Assets.xcassets */,
-				FAF3DB9B2177C79800ED629E /* LaunchScreen.storyboard */,
-				FAF3DB9E2177C79800ED629E /* Info.plist */,
+				FAF3DBA62177C7C200ED629E /* Controllers */,
+				FAF3DBA52177C7B400ED629E /* Model */,
+				FAF3DBA42177C7A900ED629E /* Resources */,
 			);
 			path = WhyiOS;
+			sourceTree = "<group>";
+		};
+		FAF3DBA42177C7A900ED629E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAF3DB962177C79800ED629E /* Main.storyboard */,
+				FAF3DB9B2177C79800ED629E /* LaunchScreen.storyboard */,
+				FAF3DB922177C79800ED629E /* AppDelegate.swift */,
+				FAF3DB992177C79800ED629E /* Assets.xcassets */,
+				FAF3DB9E2177C79800ED629E /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FAF3DBA52177C7B400ED629E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAF3DBA92177C8DC00ED629E /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FAF3DBA62177C7C200ED629E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAF3DBA72177C7CC00ED629E /* ModelController */,
+				FAF3DBA82177C7D400ED629E /* ViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FAF3DBA72177C7CC00ED629E /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				FAF3DBAB2177C92B00ED629E /* PostController.swift */,
+			);
+			path = ModelController;
+			sourceTree = "<group>";
+		};
+		FAF3DBA82177C7D400ED629E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FAF3DBAD2177D2F700ED629E /* PostTableViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAF3DB952177C79800ED629E /* ViewController.swift in Sources */,
 				FAF3DB932177C79800ED629E /* AppDelegate.swift in Sources */,
+				FAF3DBAE2177D2F700ED629E /* PostTableViewController.swift in Sources */,
+				FAF3DBAA2177C8DC00ED629E /* Post.swift in Sources */,
+				FAF3DBAC2177C92B00ED629E /* PostController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 288VUFV9XZ;
-				INFOPLIST_FILE = WhyiOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WhyiOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 288VUFV9XZ;
-				INFOPLIST_FILE = WhyiOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WhyiOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
